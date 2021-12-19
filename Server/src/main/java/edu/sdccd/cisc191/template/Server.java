@@ -48,5 +48,7 @@ public class Server {
         } catch(Exception e) {
             e.printStackTrace();
         }
+        // Launch into the GUI of the Final Project!
+        GUI.main(args);
     }
 } //end class Server

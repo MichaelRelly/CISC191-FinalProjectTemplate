@@ -1,6 +1,6 @@
 package edu.sdccd.cisc191.template;
 
-public class Video implements Media {
+public class Video implements Media, Comparable<Video> {
     // Properties of Video class
     public int playingTime;
     public String title;

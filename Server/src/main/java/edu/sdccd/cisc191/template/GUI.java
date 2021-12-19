@@ -52,6 +52,10 @@ public class GUI extends Application {
 
         Button btn= new Button("Exit");
 
+        btn.setOnAction(actionEvent -> {
+            System.exit(0);
+        });
+
         // Construct a new JavaFX VBox with tableView
         VBox vbox = new VBox(tableView);
 

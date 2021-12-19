@@ -44,4 +44,18 @@ public class Video implements Media, Comparable<Video> {
         );
 
     }
+
+    @Override
+    public int compareTo(Video o) {
+        int retVal = this.title.compareToIgnoreCase(o.title);
+        int typeVal = this.type.toString().compareToIgnoreCase(o.type.toString());
+
+        if (retVal != 0) {
+            return retVal;
+        } if (typeVal != 0) {
+            return typeVal;
+        } else {
+            return this.director.compareToIgnoreCase(o.director);
+        }
+    }
 }

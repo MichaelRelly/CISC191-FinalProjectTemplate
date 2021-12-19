@@ -287,11 +287,4 @@ public class ImprovedVideoCollection{
     public int getCapacity() {
         return this.capacity;
     }
-
-    public void display() {
-        for (Video video : orderedList)
-        {
-            video.displayContent();
-        }
-    }
 }

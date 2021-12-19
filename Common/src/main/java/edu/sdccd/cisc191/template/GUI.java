@@ -7,8 +7,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
-import java.util.ArrayList;
 
 public class GUI extends Application {
 
@@ -42,15 +40,15 @@ public class GUI extends Application {
         // Add all the columns to the TableView
         tableView.getColumns().addAll(column1, column2, column3, column4);
 
-        VideoCollection videoCollection = new VideoCollection("media.txt");
-        ArrayList<Video> videos = videoCollection.displayTree();
+        // Instantiate new types of media belonging to some of the co-packaged classes
+        CD c = new CD("A Swingin' Affair", "Frank Sinatra", 16, 64);
+        CD d = new CD("Big Bad World", "Plain White T's", 10, 35);
+        Video x = new Video("O Brother, Where Art You?", "Joel & Ethon Coen",106, VideoType.HD);
+        Video y = new Video("O Brother, Where Art You?", "Joel & Ethon Coen",106, VideoType.DVD);
+        Video z = new Video("Infinity Wars", "Anthony & Joe Russo",149, VideoType.QHD);
 
-        ConsoleDisplay consoleDisplay = new ConsoleDisplay("Console Display");
-        consoleDisplay.start();
-
-        tableView.getItems().addAll(videos);
-
-        Button btn= new Button("Exit");
+        // Add all these items to the tableView set
+        tableView.getItems().addAll(c, d, x,y,z);
 
         // Construct a new JavaFX VBox with tableView
         VBox vbox = new VBox(tableView);

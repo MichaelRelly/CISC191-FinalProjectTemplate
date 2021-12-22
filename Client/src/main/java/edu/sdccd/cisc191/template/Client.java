@@ -27,10 +27,10 @@ public class Client {
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
     }
 
-    public CustomerResponse sendRequest() throws Exception {
+    /*public CustomerResponse sendRequest() throws Exception {
         out.println(CustomerRequest.toJSON(new CustomerRequest(1)));
         return CustomerResponse.fromJSON(in.readLine());
-    }
+    }*/
 
     public void stopConnection() throws IOException {
         in.close();
@@ -41,7 +41,7 @@ public class Client {
         Client client = new Client();
         try {
             client.startConnection("127.0.0.1", 4444);
-            System.out.println(client.sendRequest().toString());
+            // System.out.println(client.sendRequest().toString());
             client.stopConnection();
         } catch(Exception e) {
             e.printStackTrace();

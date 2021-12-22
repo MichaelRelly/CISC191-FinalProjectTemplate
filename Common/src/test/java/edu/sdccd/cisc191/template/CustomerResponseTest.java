@@ -2,7 +2,7 @@ package edu.sdccd.cisc191.template;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CustomerResponseTest {
+/*class CustomerResponseTest {
     private CustomerResponse customerResponse;
 
     @org.junit.jupiter.api.BeforeEach
@@ -21,4 +21,4 @@ class CustomerResponseTest {
         customerResponse.setLastName("Test");
         assertEquals(customerResponse.toString(), "Customer[id=1, firstName='User', lastName='Test']");
     }
-}
+}*/

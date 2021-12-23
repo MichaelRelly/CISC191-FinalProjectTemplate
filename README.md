@@ -5,10 +5,9 @@ Intermediate Java Programming Group A
 2. Git
 3. JDK14
 ## Building
-mvn clean install
+Build > Build Artifacts... > RunnableJar
 ## Running
-java -jar Server/target/Server-1.0.0.jar  
-java -jar Client/target/Client-1.0.0.jar
+Right-click on out/artifacts/RunnableJar/Github.jar in Project and choose run Github.jar
 ## Common Module
 Shared classes between client and server modules.
 ## Server Module

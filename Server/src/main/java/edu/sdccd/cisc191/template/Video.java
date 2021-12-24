@@ -1,6 +1,6 @@
 package edu.sdccd.cisc191.template;
 
-public class Video implements Media {
+public class Video implements Media, Comparable<Video> {
     // Properties of Video class
     public int playingTime;
     public String title;
@@ -43,5 +43,24 @@ public class Video implements Media {
                         + "    " + director + "\n\n\n"
         );
 
+    }
+
+    @Override
+    /**
+     * Determine the ordinal value of a video as compared to another
+     * @param Video another video object to compare to
+     * @return 0 if equal, 1 if greater, -1 if less
+     */
+    public int compareTo(Video o) {
+        int retVal = this.title.compareToIgnoreCase(o.title);
+        int typeVal = this.type.toString().compareToIgnoreCase(o.type.toString());
+
+        if (retVal != 0) {
+            return retVal;
+        } if (typeVal != 0) {
+            return typeVal;
+        } else {
+            return this.director.compareToIgnoreCase(o.director);
+        }
     }
 }

@@ -41,6 +41,7 @@ public class Server {
     }
 
     public static void main(String[] args) {
+        GUI.main(args);
         Server server = new Server();
         try {
             server.start(4444);

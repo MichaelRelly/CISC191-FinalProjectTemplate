@@ -5,9 +5,9 @@ Intermediate Java Programming Group A
 2. Git
 3. JDK14
 ## Building
-Build > Build Artifacts... > RunnableJar
+Build Project
 ## Running
-Right-click on out/artifacts/RunnableJar/Github.jar in Project and choose run Github.jar
+In IntelliJ, right-click on Server.java and choose Run
 ## Common Module
 Shared classes between client and server modules.
 ## Server Module

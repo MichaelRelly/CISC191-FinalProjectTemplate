@@ -1,6 +1,7 @@
 package edu.sdccd.cisc191.template;
 
-public class CD extends Video{
+public class CD extends Media
+{
 
     // Properties of CD
     private String artist;
@@ -8,18 +9,20 @@ public class CD extends Video{
 
     // CD constructor
     public CD(String title, String artist, int numberOfTracks, int playingTime) {
-        super(title,artist,playingTime,VideoType.CD);
+        super(title,artist,playingTime,MediaType.CD);
         this.artist = artist;
         this.numberOfTracks = numberOfTracks;
     }
 
     // getter for Artist
-    public String getArtist() {
+    public String getArtist()
+    {
         return artist;
     }
 
     // getter for numberOfTracks
-    public int getNumberOfTracks() {
+    public int getNumberOfTracks()
+    {
         return numberOfTracks;
     }
 
@@ -27,7 +30,7 @@ public class CD extends Video{
     // Display the properties of the CD in question
     public void displayContent() {
         System.out.print(
-                this.getClass().getSimpleName() + ": " + super.title + " (" + super.playingTime + " mins) \n"
+                this.getClass().getSimpleName() + ": " + super.title + " (" + super.durationInMinutes + " mins) \n"
                         + "    " + artist + "\n"
                         + "    " + "# tracks: " + numberOfTracks + "\n\n\n"
         );

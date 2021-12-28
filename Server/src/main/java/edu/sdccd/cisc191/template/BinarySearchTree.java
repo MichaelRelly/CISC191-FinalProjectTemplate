@@ -3,12 +3,16 @@ package edu.sdccd.cisc191.template;
 public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTree<E>
 {
     // constructor
-    public BinarySearchTree(){
+    public BinarySearchTree()
+    {
+        // Objects of class BinarySearchTree are instantiated similar to BinaryTree
         super();
     }
 
     // constructor
-    public BinarySearchTree(E rootItem){
+    public BinarySearchTree(E rootItem)
+    {
+        // Objects of class BinarySearchTree are instantiated similar to BinaryTree
         super(rootItem);
     }
 

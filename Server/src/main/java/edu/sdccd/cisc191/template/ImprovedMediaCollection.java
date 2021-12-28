@@ -4,80 +4,87 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
-public class ImprovedVideoCollection{
-    private LinkedList<Video>[] database;
-    private LinkedList<Video> orderedList;
+public class ImprovedMediaCollection
+{
+    // An array of Media LinkedLists
+    private LinkedList<Media>[] database;
+    // A Media LinkedList
+    private LinkedList<Media> orderedList;
     private int size;
     private int capacity;
 
-    private void loadVideos() {
-        VideoCollection a = new VideoCollection("movies.txt");
-        ArrayList<Video> videos = a.displayTree();
-        for (Video currentVideo : videos) {
-            add(currentVideo);
+    private void loadMedias()
+    {
+        // Create a new instance of class MediaCollection operating on movies.txt
+        MediaCollection a = new MediaCollection("movies.txt");
+        // Set medias to be the ArrayList of Media objects returned by displayTree()
+        ArrayList<Media> medias = a.displayTree();
+        for (Media currentMedia : medias) {
+            // add() each media object
+            add(currentMedia);
         }
     }
 
-    public ImprovedVideoCollection() {
+    public ImprovedMediaCollection() {
         this.capacity = 10;
         this.size = 0;
         this.database = new LinkedList[this.capacity];
         this.orderedList = new LinkedList();
-        loadVideos();
+        loadMedias();
     }
 
     /**
-     * Constructor to create a ImprovedVideoCollection object
+     * Constructor to create a ImprovedMediaCollection object
      *
      * @param capacity Instantiates this.capacity to capacity.
      */
-    public ImprovedVideoCollection(int capacity) {
+    public ImprovedMediaCollection(int capacity) {
         this.capacity = capacity;
         this.size = 0;
         this.database = new LinkedList[this.capacity];
         this.orderedList = new LinkedList();
-        loadVideos();
+        loadMedias();
     }
 
     /**
-     * Creates a string of the videos in the database based on the order they were added
+     * Creates a string of the Medias in the database based on the order they were added
      *
-     * @return a string of the video in the order they were added
+     * @return a string of the Media in the order they were added
      */
     public String filter() {
         String retString = "";
-        for (Video video : this.orderedList) {
+        for (Media Media : this.orderedList) {
             retString += "name: "
-                    + video.getTitle() + "\n" + " Director: " + video.getDirector() + "]\n";
+                    + Media.getTitle() + "\n" + " Director: " + Media.getDirector() + "]\n";
         }
         return retString;
     }
 
     /**
-     * Adds a videoTitle-videoDirector pair object to the hash table.
+     * Adds a MediaTitle-MediaDirector pair object to the hash table.
      *
-     * @param video video object
+     * @param Media Media object
      */
-    public boolean add(Video video) {
-        if (video == null) {
+    public boolean add(Media Media) {
+        if (Media == null) {
             return false;
         }
-        int index = hash(video.getTitle());
+        int index = hash(Media.getTitle());
         this.size++;
         if (this.database[index] == null) {
             this.database[index] = new LinkedList();
-            this.database[index].addFirst(video);
+            this.database[index].addFirst(Media);
             if (this.getLoadCapacity() >= 0.80) {
                 expand();
             }
-            addToList(video);
+            addToList(Media);
             return true;
-        } else if ((this.database[index] != null) && (!videoExists(video.getTitle(), this.database[index]))) {
-            this.database[index].add(video);
+        } else if ((this.database[index] != null) && (!mediaExists(Media.getTitle(), this.database[index]))) {
+            this.database[index].add(Media);
             if (this.getLoadCapacity() >= 0.80) {
                 expand();
             }
-            addToList(video);
+            addToList(Media);
             return true;
         }
         this.size--;
@@ -85,50 +92,50 @@ public class ImprovedVideoCollection{
     }
 
     /**
-     * Retrieves a videoTitle-videoDirector pair object from the hash table and return the name
+     * Retrieves a MediaTitle-MediaDirector pair object from the hash table and return the name
      *
-     * @param videoTitle the object's videoTitle that will be return if it exists
+     * @param MediaTitle the object's MediaTitle that will be return if it exists
      * @throws throws a NoSuchElementException if the is null or doesn't exist
-     * @return returns the videoTitle of the object whose videoTitle matches
+     * @return returns the MediaTitle of the object whose MediaTitle matches
      */
-    public String search(String videoTitle) throws NoSuchElementException {
-        if (videoTitle == null) {
-            throw new NoSuchElementException("videoTitle cannot be null");
+    public String search(String MediaTitle) throws NoSuchElementException {
+        if (MediaTitle == null) {
+            throw new NoSuchElementException("MediaTitle cannot be null");
         }
-        int index = hash(videoTitle);
+        int index = hash(MediaTitle);
         if (this.database[index] != null) {
-            return getTitleHelper(videoTitle, this.database[index]);
+            return getTitleHelper(MediaTitle, this.database[index]);
         }
         throw new NoSuchElementException("No such element exists");
     }
 
-    private void addToList(Video newVideo) {
+    private void addToList(Media newMedia) {
         if (this.orderedList == null) {
-            this.orderedList.addFirst(newVideo);
-        } else if (!videoExists((String) newVideo.getTitle(), this.orderedList)) {
-            this.orderedList.add(newVideo);
+            this.orderedList.addFirst(newMedia);
+        } else if (!mediaExists((String) newMedia.getTitle(), this.orderedList)) {
+            this.orderedList.add(newMedia);
         }
     }
 
     /**
-     * Helper method to look for a video name
+     * Helper method to look for a Media name
      *
-     * @param videoTitle the videoTitle to look for
+     * @param mediaTitle the MediaTitle to look for
      * @param list      the linkedlist to look in
-     * @return returns the videoDirector from the videoTitle if found, otherwise throws a
+     * @return returns the MediaDirector from the MediaTitle if found, otherwise throws a
      *         NoSuchElementException
      */
-    private String getTitleHelper(String videoTitle, LinkedList<Video> list)
+    private String getTitleHelper(String mediaTitle, LinkedList<Media> list)
             throws NoSuchElementException {
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getTitle().equals(videoTitle)) {
+            if (list.get(i).getTitle().equals(mediaTitle)) {
                 return (String) list.get(i).getTitle();
             }
         }
         throw new NoSuchElementException("No such element exists");
     }
 
-    private String getDirectorHelper(String videoTitle, LinkedList<Video> list)
+    private String getDirectorHelper(String videoTitle, LinkedList<Media> list)
             throws NoSuchElementException {
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getTitle().toString().toLowerCase().equals(videoTitle.toString().toLowerCase())) {
@@ -145,7 +152,7 @@ public class ImprovedVideoCollection{
      * @param linkedList linkedlist to check in
      * @return returns true if the videoTitle is found, false otherwise
      */
-    private boolean videoExists(String videoTitle, LinkedList<Video> linkedList) {
+    private boolean mediaExists(String videoTitle, LinkedList<Media> linkedList) {
         for (int i = 0; i < linkedList.size(); i++) {
             if (linkedList.get(i).getTitle().toString().toLowerCase().equals(videoTitle.toString().toLowerCase())) {
                 return true;
@@ -167,15 +174,15 @@ public class ImprovedVideoCollection{
      * Expands the hash table, doubling its current capacity and rehashes all objects within it.
      */
     private void expand() {
-        LinkedList<Video>[] oldDatabase = this.database;
+        LinkedList<Media>[] oldDatabase = this.database;
         this.capacity *= 2;
         this.size = 0;
         this.database = new LinkedList[this.capacity];
         for (int i = 0; i < oldDatabase.length; i++) {
             if (oldDatabase[i] != null) {
                 for (int j = 0; j < oldDatabase[i].size(); j++) {
-                    Video video = oldDatabase[i].get(j);
-                    add(video);
+                    Media media = oldDatabase[i].get(j);
+                    add(media);
                 }
             }
         }
@@ -198,8 +205,8 @@ public class ImprovedVideoCollection{
      * @param video name of the video
      * @return returns true if successfully added, false otherwise
      */
-    public boolean put(Video video) {
-        return add(video);
+    public boolean put(Media media) {
+        return add(media);
     }
 
     /**
@@ -237,7 +244,7 @@ public class ImprovedVideoCollection{
         }
         int index = hash(videoTitle);
         if (this.database[index] != null) {
-            return videoExists(videoTitle, this.database[index]);
+            return mediaExists(videoTitle, this.database[index]);
         }
         return false;
     }
@@ -269,10 +276,10 @@ public class ImprovedVideoCollection{
     /**
      * Removes a video from the ordered list
      *
-     * @param Video video to remove
+     * @param Media video to remove
      */
-    private void removeFromList(Video Video) {
-        this.orderedList.removeFirstOccurrence(Video);
+    private void removeFromList(Media media) {
+        this.orderedList.removeFirstOccurrence(media);
     }
 
     /**
@@ -286,5 +293,12 @@ public class ImprovedVideoCollection{
 
     public int getCapacity() {
         return this.capacity;
+    }
+
+    public void display() {
+        for (Media media : orderedList)
+        {
+            media.displayContent();
+        }
     }
 }

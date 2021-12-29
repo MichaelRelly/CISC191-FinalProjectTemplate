@@ -36,11 +36,11 @@ public class GUI extends Application {
         column3.setCellValueFactory(new PropertyValueFactory<>("type"));
 
         // Construct a new javaFX TableColumn to eventually store director
-        TableColumn<Media, String> column4 = new TableColumn<>("Producer");
-        column4.setCellValueFactory(new PropertyValueFactory<>("producer"));
+        //TableColumn<Media, String> column4 = new TableColumn<>("Producer");
+        //column4.setCellValueFactory(new PropertyValueFactory<>("producer"));
 
         // Add all the columns to the TableView
-        tableView.getColumns().addAll(column1, column2, column3, column4);
+        tableView.getColumns().addAll(column1, column2, column3);
 
         MediaCollection MediaCollection = new MediaCollection("media.txt");
         ArrayList<Media> medias = MediaCollection.displayTree();

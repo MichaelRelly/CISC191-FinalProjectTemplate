@@ -58,13 +58,14 @@ public class GUI extends Application {
         });
 
         // Construct a new JavaFX VBox with tableView
-        VBox vbox = new VBox(tableView);
+        VBox vbox = new VBox(tableView,btn);
 
         // Use to construct a javaFX scene
         Scene scene = new Scene(vbox);
 
         // Set the scene and finally show the JavaFX primary stage
         primaryStage.setScene(scene);
+        primaryStage.setWidth(1000);
         primaryStage.show();
     }
 

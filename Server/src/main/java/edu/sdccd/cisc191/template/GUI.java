@@ -51,21 +51,15 @@ public class GUI extends Application {
 
         tableView.getItems().addAll(medias);
 
-        Button btn= new Button("Exit");
-
-        btn.setOnAction(actionEvent -> {
-            System.exit(0);
-        });
 
         // Construct a new JavaFX VBox with tableView
-        VBox vbox = new VBox(tableView,btn);
+        VBox vbox = new VBox(tableView);
 
         // Use to construct a javaFX scene
         Scene scene = new Scene(vbox);
 
         // Set the scene and finally show the JavaFX primary stage
         primaryStage.setScene(scene);
-        primaryStage.setWidth(1000);
         primaryStage.show();
     }
 
